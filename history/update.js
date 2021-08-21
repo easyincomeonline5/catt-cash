@@ -4,17 +4,18 @@ module.exports = {
     updateHistory(id, req, res) {
         const query = { "_id": id };
 
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = date.getMonth()+1;
-        const day = date.getDate();
-        const complete_date = day+"/"+month+"/"+year;
-
+        // const date = new Date();
+        // const year = date.getFullYear();
+        // const month = date.getMonth()+1;
+        // const day = date.getDate();
+        // const complete_date = day+"/"+month+"/"+year;
+        //
+        const {date } = req.query;
         const history_item = {
             _id: "H" + Date.now(),
             type: req.body.type,
             point: req.body.point,
-            date: complete_date            
+            date: date            
         }
 
         History.update(query,
