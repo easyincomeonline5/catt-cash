@@ -45,7 +45,7 @@ storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 // Uploading image to server hadrdisk then reference will insert to MongoDb...
-app.post("/uploadImageToGenarateUrl",
+app.post("/uploadImageToGenerateUrl",
     upload.single('uploadImage'),
     function (req, res) {
         console.log(req.file);
