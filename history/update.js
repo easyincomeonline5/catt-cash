@@ -28,8 +28,10 @@ module.exports = {
             },
 
             function (error, result) {
-                console.log(result);
-                res.json(result)
+                console.log({message: result.n});
+                if (result.n = 1) {
+                    res.json({message: result.n})
+                }
                 res.end();
 
             })
