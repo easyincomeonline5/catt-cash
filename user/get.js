@@ -1,9 +1,9 @@
 const User = require('../models/user')
 
 module.exports = {
-     getUser(req, res){
+     getUser(id, req, res){
          
-        const {id, phone_number} = req.query;
+        const {phone_number} = req.query;
 
         var searchQuery ={}
         
@@ -17,17 +17,6 @@ module.exports = {
             res.json({"message": "invalid  query"});
             res.end();
         }
-        
-        
-            User.find(searchQuery)
-            .limit(parseInt(limit)).skip(((page-1)*limit))
-            .then((result)=>{
-                res.json(result);
-                res.end();
-            })
-            .catch((error)=>{
-                console.log(error);
-            })
 
   },
   authenticateUser(req, res){
@@ -45,8 +34,13 @@ function findUser(req, res, searchQuery){
         if (error) {
             console.log(error);
         }else{
-            res.json(result);
-            res.end();
+            if (result==null) {
+                res.json({"message": "User not found."});
+                res.end();
+            }else{
+                res.json(result);
+                res.end();
+            }
         }
     });
 }

@@ -2,22 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dbConnections = require('../dbConnections')
-var catCashDbConnection = dbConnections.getCatCashDbConnection();
+var catCashDbConnection = dbConnections.getCattCashDbConnection();
 
 const regular_user = {
-    spin: {type: int, required: true},
-    ads: {type: int, required: true},
-    quiz: {type: int, required: true}
+    spin: {type: Number, required: true},
+    ads: {type: Number, required: true},
+    quiz: {type: Number, required: true}
 }
 const standard_user = {
-    spin: {type: int, required: true},
-    ads: {type: int, required: true},
-    quiz: {type: int, required: true}
+    spin: {type: Number, required: true},
+    ads: {type: Number, required: true},
+    quiz: {type: Number, required: true}
 }
 const premium_user = {
-    spin: {type: int, required: true},
-    ads: {type: int, required: true},
-    quiz: {type: int, required: true}
+    spin: {type: Number, required: true},
+    ads: {type: Number, required: true},
+    quiz: {type: Number, required: true}
 }
 
 const data = {

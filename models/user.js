@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dbConnections = require('../dbConnections')
-var catCashDbConnection = dbConnections.getCatCashDbConnection();
+var catCashDbConnection = dbConnections.getCattCashDbConnection();
 
 // var userDbConnection = mongoose.createConnection(userDbConnectUrl, config, function(error, result){
 //     if (error) {
@@ -19,7 +19,7 @@ const data = {
     name: {type: String, required: true},
     phone_number: {type: String, required: true},
     package: {type: String, required: true},
-    point: {type: int, required: true},
+    point: {type: Number, required: true},
 }
 const auth = {
     phone_number: {type: String, required: true},

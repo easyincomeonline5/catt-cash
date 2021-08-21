@@ -1,4 +1,4 @@
-const Constant = require('../../models/constant')
+const Constant = require('../models/constant')
 
 module.exports = {
      updateConstant(id, req, res){
@@ -12,7 +12,7 @@ module.exports = {
         const standard_user = {
             spin: cData.standard_user.spin,
             ads: cData.standard_user.ads,
-            quiz: data.standard_user.quiz
+            quiz: cData.standard_user.quiz
         }
         const premium_user = {
             spin: cData.premium_user.spin,

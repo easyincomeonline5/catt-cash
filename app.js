@@ -20,6 +20,21 @@ app.use((req, res, next) => {
      next();
 });
 
+
+const userController = require('./user/userController');
+const historyController = require('./history/historyController');
+const constantController = require('./constant/constantController');
+const newsController = require('./news/newsController');
+const withdrawController = require('./withdraw/controller');
+const upgradeController = require('./upgrade/controller');
+
+app.use("/user", userController);
+app.use("/history", historyController);
+app.use("/constant", constantController);
+app.use("/news", newsController);
+app.use("/withdraw", withdrawController);
+app.use("/upgrade", upgradeController);
+
 storage = multer.diskStorage({
     destination: './Images/',
     filename: function (req, file, cb) {

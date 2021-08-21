@@ -1,4 +1,4 @@
-const Constant = require('../../models/constant');
+const Constant = require('../models/constant');
 
 module.exports = {
     addConstant(req, res){

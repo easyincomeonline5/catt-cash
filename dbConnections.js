@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const config = {useNewUrlParser: true, useUnifiedTopology: true };
-const catCashDbConnectUrl = "mongodb+srv://hellomethealth:hellomethealth@cluster0.vrnxz.mongodb.net/hellomet?retryWrites=true&w=majority";
-
+const catCashDbConnectUrl = "mongodb+srv://catt-cash:catt-cash@cluster0.gpomt.mongodb.net/catt-cash?retryWrites=true&w=majority"
 module.exports = {
-    getCatCashDbConnection(){
+    getCattCashDbConnection(){
         return mongoose.createConnection(catCashDbConnectUrl, config, function(error, result){
             if (error) {
                 console.log(error)

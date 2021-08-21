@@ -5,13 +5,13 @@ const Delete = require('../user/delete')
 const Add = require('../user/add')
 const Get = require('../user/get')
 
-userRouter.post("/", function (req, res) {
+userRouter.post("/add", function (req, res) {
     Add.addUser(req, res);
 });
 
-
-userRouter.get("/",(req, res)=>{
-    Get.getUser(req, res);
+userRouter.get("/get/:id",(req, res)=>{
+    let id = req.params.id;
+    Get.getUser(id, req, res);
 })
 
 userRouter.get("/auth",(req, res)=>{
@@ -19,7 +19,7 @@ userRouter.get("/auth",(req, res)=>{
 })
 
 //update
-userRouter.patch("/:id", function (req, res) {
+userRouter.patch("/update/:id", function (req, res) {
     let id = req.params.id;
    // console.log(req);
 Update.updateUser(id, req, res);
@@ -27,7 +27,7 @@ Update.updateUser(id, req, res);
 
 
 //delete
-userRouter.delete("/:id", function (req, res) {
+userRouter.delete("/delete/:id", function (req, res) {
     let id = req.params.id;
    // console.log(req);
 Delete.deleteUser(id, req, res);
