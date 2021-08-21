@@ -44,6 +44,7 @@ function findHistory(req, res, searchQuery){
 }
 
 function findTodayHistory(req, res, searchQuery){
+    const {date} = req.query;
 
     History.findOne(searchQuery, function(error, result){
         if (error) {
@@ -53,16 +54,16 @@ function findTodayHistory(req, res, searchQuery){
                 res.json({"message": "History not found."});
                 res.end();
             }else{
-                const date = new Date();
-                const year = date.getFullYear();
-                const month = date.getMonth()+1;
-                const day = date.getDate();
-                const today_complete_date = day+"/"+month+"/"+year;
+                // const date = new Date();
+                // const year = date.getFullYear();
+                // const month = date.getMonth()+1;
+                // const day = date.getDate();
+                // const today_complete_date = day+"/"+month+"/"+year;
 
                 let todayHistory = [];
                 for (let index = 0; index < result.data.length; index++) {
                     const element = result.data[index];
-                    if (element.date == today_complete_date) {
+                    if (element.date == date) {
                         todayHistory.push(element);
                     }
                 }
