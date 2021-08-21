@@ -8,6 +8,11 @@ const Get = require('../history/get')
 //     Add.addUser(id);
 // });
 
+historyRouter.get("/get/today/:id",(req, res)=>{
+    let id = req.params.id;
+    Get.getTodayHistory(id, req, res);
+})
+
 historyRouter.get("/get/:id",(req, res)=>{
     let id = req.params.id;
     Get.getHistory(id, req, res);

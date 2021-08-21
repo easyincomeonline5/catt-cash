@@ -4,26 +4,27 @@ const Schema = mongoose.Schema;
 const dbConnections = require('../dbConnections')
 var catCashDbConnection = dbConnections.getCattCashDbConnection();
 
-const regular_user = {
+const regular = {
     spin: {type: Number, required: true},
     ads: {type: Number, required: true},
     quiz: {type: Number, required: true}
 }
-const standard_user = {
+const standard = {
     spin: {type: Number, required: true},
     ads: {type: Number, required: true},
     quiz: {type: Number, required: true}
 }
-const premium_user = {
+const premium = {
     spin: {type: Number, required: true},
     ads: {type: Number, required: true},
     quiz: {type: Number, required: true}
 }
 
 const data = {
-    regular_user: {type: regular_user, required: true},
-    standard_user: {type: standard_user, required: true},
-    premium_user: {type: premium_user, required: true}
+    regular: {type: regular, required: true},
+    standard: {type: standard, required: true},
+    premium: {type: premium, required: true},
+    rate: {type: Number, required: true}
 }
 
 const constantSchema = new Schema({

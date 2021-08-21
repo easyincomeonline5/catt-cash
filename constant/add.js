@@ -4,17 +4,17 @@ module.exports = {
     addConstant(req, res){
     //var cData = req.body.data;
 
-        const regular_user = {
+        const regular = {
             spin: 5,
             ads: 10,
             quiz: 10
         }
-        const standard_user = {
+        const standard = {
             spin: 10,
             ads: 20,
             quiz: 20
         }
-        const premium_user = {
+        const premium = {
             spin: 20,
             ads: 40,
             quiz:40
@@ -23,9 +23,10 @@ module.exports = {
         const constant = new Constant({
             _id: "Constant",
             data: {
-                regular_user,
-                standard_user,
-                premium_user
+                regular,
+                standard,
+                premium,
+                rate: 5
             }
         });
 

@@ -4,29 +4,32 @@ module.exports = {
      updateConstant(id, req, res){
     let cData = req.body.data;
 
-    const regular_user = {
-            spin: cData.regular_user.spin,
-            ads: cData.regular_user.ads,
-            quiz: cData.regular_user.quiz
+    const regular = {
+            spin: cData.regular.spin,
+            ads: cData.regular.ads,
+            quiz: cData.regular.quiz
         }
-        const standard_user = {
-            spin: cData.standard_user.spin,
-            ads: cData.standard_user.ads,
-            quiz: cData.standard_user.quiz
+        const standard = {
+            spin: cData.standard.spin,
+            ads: cData.standard.ads,
+            quiz: cData.standard.quiz
         }
-        const premium_user = {
-            spin: cData.premium_user.spin,
-            ads: cData.premium_user.ads,
-            quiz: cData.premium_user.quiz
+        const premium = {
+            spin: cData.premium.spin,
+            ads: cData.premium.ads,
+            quiz: cData.premium.quiz
         }
+
+        const rate = cData.rate;
 
     //console.log(req);
     const constant = new Constant({
         _id: "Constant",
         data: {
-            regular_user,
-            standard_user,
-            premium_user
+            regular,
+            standard,
+            premium,
+            rate
         }
     });
 
