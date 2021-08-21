@@ -9,6 +9,11 @@ userRouter.post("/add", function (req, res) {
     Add.addUser(req, res);
 });
 
+userRouter.get("/get",(req, res)=>{
+    let id;
+    Get.getUser(id, req, res);
+})
+
 userRouter.get("/get/:id",(req, res)=>{
     let id = req.params.id;
     Get.getUser(id, req, res);
