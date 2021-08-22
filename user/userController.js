@@ -23,6 +23,8 @@ userRouter.get("/auth",(req, res)=>{
     Get.authenticateUser(req, res);
 })
 
+
+
 //update
 userRouter.patch("/update/:id", function (req, res) {
     let id = req.params.id;
