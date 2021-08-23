@@ -6,10 +6,11 @@ var cattCashDbConnection = dbConnections.getCattCashDbConnection();
 
 const item = {
     _id: {type: String, required: true},
-    number: {type: String, required: true},
+    phone_number: {type: String, required: true},
     method: {type: String, required: true},
-    point: {type: Number, required: true},
+    amount: {type: Number, required: true},
     rate: {type: String, required: true},
+    status: {type: String, required: true},
     date: {type: String, required: true}
 }
 const data = [item]

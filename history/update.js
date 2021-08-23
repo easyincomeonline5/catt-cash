@@ -29,6 +29,9 @@ module.exports = {
             },
 
             function (error, result) {
+                if (error) {
+                    res.end();
+                }
                 console.log({message: result.n});
                 if (result.n = 1) {
                     res.json({message: result.n})

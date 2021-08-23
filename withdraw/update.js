@@ -1,21 +1,22 @@
 const Withdraw = require('../models/witdraw')
 
 module.exports = {
-    updateWithdraw(id, req, res) {
+    pushWithdrawItem(id, req, res) {
         const query = { "_id": id };
 
-        let current = new Date();
-       let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
-       let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-       let dateTime = cDate + ' ' + cTime;
+    //    let current = new Date();
+    //    let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+    //    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+    //    let dateTime = cDate + ' ' + cTime;
 
         const withdraw_item = {
             _id: "W" + Date.now(),
-            number: req.body.number,
+            phone_number: req.body.phone_number,
             method: req.body.method,
-            point: req.body.point,
+            amount: req.body.amount,
             rate: req.body.rate,
-            date: dateTime        
+            status: req.body.status,
+            date: req.body.date
         }
 
         Withdraw.update(query,
@@ -29,10 +30,63 @@ module.exports = {
             },
 
             function (error, result) {
-                console.log(result);
-                res.json(result)
-                res.end();
-
+                if (error) {
+                    res.end();
+                }
+                console.log({message: result.n});
+                if (result.n = 1) {
+                    res.json({message: result.n})
+                }
+                res.end();;
             })
+    },
+
+    updateWithdrawItem(id, req, res){
+        const {item_id} = req.query;
+
+        const withdraw_item = {
+            _id: item_id,
+            phone_number: req.body.phone_number,
+            method: req.body.method,
+            amount: req.body.amount,
+            rate: req.body.rate,
+            status: req.body.status,
+            date: req.body.date        
+        }
+        
+        const searchQuery = {_id: id};
+
+        //find target withdraw item to update its item
+        Withdraw.findOne(searchQuery, function(error, result){
+            if (error) {
+                console.log(error);
+            }else{
+                if (result==null) {
+                    //res.json({"message": "Withdraw not found."});
+                    res.end();
+                }else{
+                    //set data to exact item of withdraw array
+                    for (let index = 0; index < result.data.length; index++) {
+                        const element = result.data[index];
+                        if (element._id==item_id) {
+                            result.data[index] = withdraw_item;
+
+                            //finaly update with new value
+                            Withdraw.updateOne(searchQuery, {$set: result}, (err, newResult) => {
+                                if (err) {
+                                    console.log(err);
+                                    res.end();
+                                }else{
+                                    console.log(newResult);
+                                    res.json(newResult)
+                                    res.end();
+                                }
+                              });
+                              return;
+                        }
+                    }
+                }
+            }
+        });
     }
 }

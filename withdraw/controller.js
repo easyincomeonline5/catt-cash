@@ -13,13 +13,20 @@ withdrawRouter.get("/get/:id",(req, res)=>{
     Get.getWithdraw(id, req, res);
 })
 
-//update
+//push item to array
+withdrawRouter.post("/push/:id", function (req, res) {
+    let id = req.params.id;
+   // console.log(req);
+Update.pushWithdrawItem(id, req, res);
+})
+
+
+//Update Withdraw array item
 withdrawRouter.patch("/update/:id", function (req, res) {
     let id = req.params.id;
    // console.log(req);
-Update.updateWithdraw(id, req, res);
+Update.updateWithdrawItem(id, req, res);
 })
-
 
 module.exports = withdrawRouter;
 
