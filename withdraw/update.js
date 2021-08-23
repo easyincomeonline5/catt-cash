@@ -1,4 +1,5 @@
 const Withdraw = require('../models/witdraw')
+const User = require('../models/user')
 
 module.exports = {
     pushWithdrawItem(id, req, res) {
@@ -35,7 +36,9 @@ module.exports = {
                 }
                 console.log({message: result.n});
                 if (result.n = 1) {
+                    updateUserPoint(id, req.body.amount);
                     res.json({message: result.n})
+                    console.log("Withdraw item pushed to withdraw array!");
                 }
                 res.end();;
             })
@@ -89,4 +92,36 @@ module.exports = {
             }
         });
     }
+}
+
+function updateUserPoint(id, decreasePoint) {
+
+    const searchQuery = { "_id": id }
+
+    User.findOne(searchQuery, function (error, result) {
+        if (error) {
+            console.log(error);
+        } else {
+            if (result == null) {
+                console.log("User not found.");
+                return;
+            } else {
+                result.data.point = result.data.point - decreasePoint;
+           
+                User.updateOne(searchQuery, { $set: result }, (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    } else {
+                        console.log({ message: result.n });
+                        if (result.n = 1) {
+                            console.log("User point updated");
+                        } else {
+                            console.log("User point can not update");
+                        }
+                    }
+                });
+            }
+        }
+    });
 }
