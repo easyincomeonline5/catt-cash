@@ -40,7 +40,7 @@ function findUser(req, res, searchQuery) {
             } else {
                 console.log(result.package.issued_at);
                 console.log(result.package.expired_at);
-                if (result.package.issued_at+1 > result.package.expired_at) {
+                if (result.package.issued_at > result.package.expired_at) {
                     console.log("issued at not less than expired at");
                     const user = {
                         package: {
