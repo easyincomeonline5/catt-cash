@@ -1,7 +1,6 @@
 const User = require('../models/user')
 const InitHistory = require('../history/add');
 const InitWithdraw = require('../withdraw/add');
-const InitUpgrade = require('../upgrade/add');
 
 module.exports = {
      addUser(req, res){
@@ -14,8 +13,17 @@ module.exports = {
                 phone_number: uData.phone_number,
                 image_url: uData.image_url,
                 email: uData.email,
-                package: uData.package,
                 point: uData.point
+            },
+            package: {
+                title: "Regular",
+                phone_number: "...",
+                method: "...",
+                transaction: "...",
+                amount: 0,
+                status: "Approved",
+                issued_at: 0,
+                expired_at: Number.MAX_SAFE_INTEGER
             },
             auth: {
                 phone_number: req.body.auth.phone_number,
@@ -29,7 +37,6 @@ module.exports = {
 
             InitHistory.addHistory(id);
             InitWithdraw.addWithdraw(id);
-            InitUpgrade.addUpgrade(id);
             res.json(result);
             res.end();
 

@@ -12,13 +12,11 @@ var catCashDbConnection = dbConnections.getCattCashDbConnection();
 //     }
 // });
 
-
 const data = {
     email: {type: String, required: true},
     image_url: {type: String, required: true},
     name: {type: String, required: true},
     phone_number: {type: String, required: true},
-    package: {type: String, required: true},
     point: {type: Number, required: true},
 }
 const auth = {
@@ -26,9 +24,21 @@ const auth = {
     password: {type: String, required: true}
 }
 
+const package = {
+    title: {type: String, required: true},
+    phone_number: {type: String, required: true},
+    method: {type: String, required: true},
+    transaction: {type: String, required: true},
+    amount: {type: Number, required: true},
+    status: {type: String, required: true},
+    issued_at: {type: Number, required: true},
+    expired_at: {type: Number, required: true}
+}
+
 const userSchema = new Schema({
     _id:{type: String, required: true},
     data: {type: data, required: true},
+    package: {type: package, required: true},
     auth: {type: auth, required: true}
 },
 {timestamps: true});

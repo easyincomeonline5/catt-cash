@@ -1,5 +1,4 @@
 const User = require('../models/user')
-const GetUser = require('./get');
 module.exports = {
     updateUser(id, req, res) {
         updateUser(id, req, res);
@@ -27,18 +26,30 @@ function updateUser(id, req, res) {
             } else {
                 const copyResult = result;
                 if (req.body.data) {
-                    const { name, email, image_url, point, package } = req.body.data;
+                    const { name, email, image_url, point } = req.body.data;
                     name ? result.data.name = name : {}
                     email ? result.data.email = email : {}
                     image_url ? result.data.image_url = image_url : {}
                     point ? result.data.point = point : {}
-                    package ? result.data.package = package : {}
                 }
+
+                if (req.body.package) {
+                    const { title, phone_number, method, transaction, amount,
+                        status, issued_at, expired_at } = req.body.package;
+                    title ? result.package.title = title : {};
+                    phone_number ? result.package.phone_number = phone_number : {};
+                    method ? result.package.method = method : {};
+                    transaction ? result.package.transaction = transaction : {};
+                    amount ? result.package.amount = amount : {};
+                    status ? result.package.status = status : {};
+                    issued_at ? result.package.issued_at = issued_at : {};
+                    expired_at ? result.package.expired_at = expired_at : {};
+                }
+
                 if (req.body.auth) {
                     const { phone_number, password } = req.body.auth;
                     phone_number ? result.auth.phone_number = phone_number : {}
                     password ? result.auth.password = password : {}
-
                 }
                 // if (copyResult == result) {
                 //     res.json({ message: "Input is not valid. data or auth and their minimum single phoperty needed" })
@@ -54,7 +65,17 @@ function updateUser(id, req, res) {
                     } else {
                         console.log({ message: result.n });
                         if (result.n = 1) {
-                            GetUser.getUser(id, req, res);
+                            // User.findOne(searchQuery, function (error, result) {
+                            //     if (error) {
+                            //         console.log(error);
+                            //     } else {
+                            //         res.json(result);
+                            //         res.end();
+                            //     }
+                            // })
+                            res.json({ message: "User updated." })
+                            res.end();
+
                         } else {
                             res.json({ message: "User can not update" })
                             res.end();
