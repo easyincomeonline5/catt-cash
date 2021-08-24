@@ -9,8 +9,8 @@ function updateUser(id, req, res) {
 
     const searchQuery = { "_id": id }
 
-    if (req.body.data == null && req.body.auth == null) {
-        res.json({ message: "Input is not valid. data or auth and their minimum single phoperty needed" })
+    if (req.body.data == null && req.package.auth == null && req.body.auth == null) {
+        res.json({ message: "Input is not valid. data or package or auth and their minimum single phoperty needed" })
         res.end();
         return;
     }
