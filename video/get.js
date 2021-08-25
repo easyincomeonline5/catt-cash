@@ -56,7 +56,7 @@ function findAllVideos(req, res){
                     getInvalidateVideoByViewCount(req, res, result);
                 }
             }else{
-                res.json(validVideos);
+                res.json(result);
                 res.end();
             }
         }
