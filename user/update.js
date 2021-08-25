@@ -24,7 +24,6 @@ function updateUser(id, req, res) {
                 res.end();
                 return;
             } else {
-                const copyResult = result;
                 if (req.body.data) {
                     const { name, email, image_url, point } = req.body.data;
                     name ? result.data.name = name : {}
