@@ -47,7 +47,28 @@ function findAllVideos(req, res){
             res.json({"message": "Videos not found."});
             res.end();
         }else{
-            let validVideos = [];
+            const {valid} = req.query;
+            
+            if (valid) {
+                if (valid==1) {
+                    getValidateVideoByViewCout(req, res, result);
+                }else if (valid == 0) {
+                    getInvalidateVideoByViewCount(req, res, result);
+                }
+            }else{
+                res.json(validVideos);
+                res.end();
+            }
+        }
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.end()
+    });
+}
+
+function getValidateVideoByViewCout(req, res, result){
+    let validVideos = [];
             for (let i = 0; i < result.length; i++) {
                 const element = result[i];
                 if (element.data.current_view < element.data.required_view) {
@@ -62,12 +83,25 @@ function findAllVideos(req, res){
                 res.json(validVideos);
                 res.end();
             }
-        }
-    })
-    .catch((error)=>{
-        console.log(error);
-        res.end()
-    });
+}
+
+function getInvalidateVideoByViewCount(req, res, result){
+    let invalidVideos = [];
+            for (let i = 0; i < result.length; i++) {
+                const element = result[i];
+                if (element.data.current_view > element.data.required_view
+                    || element.data.current_view == element.data.required_view) {
+                    invalidVideos.push(element);
+                    console.log("Invalid");
+                }
+            }
+            if (invalidVideos == null || invalidVideos.length == 0 ) {
+                res.json({"message": "Invalid Videos not found."});
+                res.end();
+            }else{
+                res.json(invalidVideos);
+                res.end();
+            }
 }
 
 function findRecentVideo(req, res, searchQuery, limit, page){
