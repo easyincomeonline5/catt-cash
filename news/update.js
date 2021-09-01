@@ -8,6 +8,7 @@ module.exports = {
            _id: id,
            data: {
                title: req.body.title,
+               image_url: req.body.image_url,
                description: req.body.description,
                owner: req.body.owner,
                date: req.body.date
@@ -20,8 +21,12 @@ module.exports = {
             res.end();
         }else{
             console.log(result);
-            res.json(result)
-            res.end();
+            if(result.n == 1){
+                res.json(result)
+                res.end();
+            }else{
+                res.end();
+            }
         }
       });
     }

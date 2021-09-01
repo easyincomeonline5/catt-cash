@@ -2,22 +2,25 @@ const Constant = require('../models/constant');
 
 module.exports = {
     addConstant(req, res){
-    //var cData = req.body.data;
+    var cData = req.body.data;
 
         const regular = {
-            spin: 5,
-            ads: 10,
-            quiz: 10
+            spin: cData.regular.spin,
+            ads: cData.regular.ads,
+            quiz: cData.regular.quiz,
+            rate: cData.regular.rate
         }
         const standard = {
-            spin: 10,
-            ads: 20,
-            quiz: 20
+            spin: cData.standard.spin,
+            ads: cData.standard.ads,
+            quiz: cData.standard.quiz,
+            rate: cData.standard.rate
         }
         const premium = {
-            spin: 20,
-            ads: 40,
-            quiz:40
+            spin: cData.premium.spin,
+            ads: cData.premium.ads,
+            quiz: cData.premium.quiz,
+            rate: cData.premium.rate
         }
 
         const constant = new Constant({
@@ -25,8 +28,7 @@ module.exports = {
             data: {
                 regular,
                 standard,
-                premium,
-                rate: 5
+                premium
             }
         });
 

@@ -6,6 +6,7 @@ var cattCashDbConnection = dbConnections.getCattCashDbConnection();
 
 const data = {
     title: {type: String, required: true},
+    image_url: {type: String, required: true},
     description: {type: String, required: true},
     owner: {type: String, required: true},
     date: {type: String, required: true}

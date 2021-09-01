@@ -15,8 +15,14 @@ module.exports = {
   },
   getRecentNews(req, res){
     var searchQuery ={}
-    const {limit =20 , page =1} = req.query;
-    findRecentNews(res, res, searchQuery, limit, page);
+    const { title, limit =20 , page =1} = req.query;
+    
+    if (title) {
+        searchQuery = { 'data.title' : { '$regex' : title, '$options' : 'i' } }
+        findRecentNews(res, res, searchQuery, limit, page);
+    }else{
+        findRecentNews(res, res, searchQuery, limit, page);
+    }
   }
 }
 

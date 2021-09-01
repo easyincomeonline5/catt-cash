@@ -25,8 +25,9 @@ function updateUser(id, req, res) {
                 return;
             } else {
                 if (req.body.data) {
-                    const { name, email, image_url, point } = req.body.data;
+                    const { name, email, phone_number, image_url, point } = req.body.data;
                     name ? result.data.name = name : {}
+                    phone_number ? result.data.phone_number = phone_number : {}
                     email ? result.data.email = email : {}
                     image_url ? result.data.image_url = image_url : {}
                     point ? result.data.point = point : {}

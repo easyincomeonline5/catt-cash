@@ -14,9 +14,10 @@ module.exports = {
            _id: id,
            data: {
                title: nData.title,
+               image_url: nData.image_url,
                desdescription: nData.description,
                owner: nData.owner,
-               date: dateTime
+               date: nData.owner
            }
        });
 

@@ -7,20 +7,21 @@ module.exports = {
     const regular = {
             spin: cData.regular.spin,
             ads: cData.regular.ads,
-            quiz: cData.regular.quiz
+            quiz: cData.regular.quiz,
+            rate: cData.regular.rate
         }
         const standard = {
             spin: cData.standard.spin,
             ads: cData.standard.ads,
-            quiz: cData.standard.quiz
+            quiz: cData.standard.quiz,
+            rate: cData.standard.rate
         }
         const premium = {
             spin: cData.premium.spin,
             ads: cData.premium.ads,
-            quiz: cData.premium.quiz
+            quiz: cData.premium.quiz,
+            rate: cData.premium.rate
         }
-
-        const rate = cData.rate;
 
     //console.log(req);
     const constant = new Constant({
@@ -28,8 +29,7 @@ module.exports = {
         data: {
             regular,
             standard,
-            premium,
-            rate
+            premium
         }
     });
 

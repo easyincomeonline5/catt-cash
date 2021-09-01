@@ -27,6 +27,7 @@ const constantController = require('./constant/constantController');
 const newsController = require('./news/newsController');
 const withdrawController = require('./withdraw/controller');
 const videoController = require('./video/videoController');
+const quizController = require('./quiz/quizController');
 //const packageController = require('./package/controller');
 
 app.use("/user", userController);
@@ -35,6 +36,7 @@ app.use("/constant", constantController);
 app.use("/news", newsController);
 app.use("/withdraw", withdrawController);
 app.use("/video", videoController);
+app.use("/quiz", quizController);
 //app.use("/package", packageController);
 
 storage = multer.diskStorage({

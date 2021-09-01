@@ -7,24 +7,26 @@ var catCashDbConnection = dbConnections.getCattCashDbConnection();
 const regular = {
     spin: {type: Number, required: true},
     ads: {type: Number, required: true},
-    quiz: {type: Number, required: true}
+    quiz: {type: Number, required: true},
+    rate: {type: Number, required: true}
 }
 const standard = {
     spin: {type: Number, required: true},
     ads: {type: Number, required: true},
-    quiz: {type: Number, required: true}
+    quiz: {type: Number, required: true},
+    rate: {type: Number, required: true}
 }
 const premium = {
     spin: {type: Number, required: true},
     ads: {type: Number, required: true},
-    quiz: {type: Number, required: true}
+    quiz: {type: Number, required: true},
+    rate: {type: Number, required: true}
 }
 
 const data = {
     regular: {type: regular, required: true},
     standard: {type: standard, required: true},
-    premium: {type: premium, required: true},
-    rate: {type: Number, required: true}
+    premium: {type: premium, required: true}
 }
 
 const constantSchema = new Schema({
