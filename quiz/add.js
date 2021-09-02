@@ -13,7 +13,7 @@ module.exports = {
        const quiz = new Quiz({
            _id: id,
            data: {
-               quistion: qData.quistion,
+               question: qData.question,
                opt1: qData.opt1,
                opt2: qData.opt2,
                opt3: qData.opt3,
