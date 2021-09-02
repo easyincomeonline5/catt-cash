@@ -82,7 +82,7 @@ function findAllQuizes(req, res){
     .skip(((page-1)*limit))
     .then((result)=>{
         if (result == null || result.length == 0 ) {
-            //res.json(result);
+            res.json(result);
             res.end();
         }else{
             res.json(result);
