@@ -41,13 +41,22 @@ function findVideo(req, res, searchQuery){
 
 
 function findAllVideos(req, res){
+    let searchQuery = {};
+    const {title, limit=20, page=1, valid} = req.query;
 
-    Video.find({}).then((result)=>{
+    if (title) {
+        searchQuery = { 'data.title' : { '$regex' : title, '$options' : 'i' } }
+    }
+
+    Video.find(searchQuery)
+    .sort({updatedAt:-1})
+    .limit(parseInt(limit))
+    .skip(((page-1)*limit))
+    .then((result)=>{
         if (result == null || result.length == 0 ) {
             res.json({"message": "Videos not found."});
             res.end();
         }else{
-            const {valid} = req.query;
             
             if (valid) {
                 if (valid==1) {
