@@ -14,6 +14,10 @@ userRouter.get("/get",(req, res)=>{
     Get.getUser(id, req, res);
 })
 
+userRouter.get("/get/all",(req, res)=>{
+    Get.getAllUsers(req, res);
+})
+
 userRouter.get("/get/:id",(req, res)=>{
     let id = req.params.id;
     Get.getUser(id, req, res);

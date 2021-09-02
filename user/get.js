@@ -19,6 +19,9 @@ module.exports = {
         }
 
     },
+    getAllUsers(req, res) {
+        findAllUsers(req, res);
+    },
     authenticateUser(req, res) {
         var query = {
             "auth.phone_number": req.query.phone_number,
@@ -26,6 +29,28 @@ module.exports = {
         }
         findUser(req, res, query);
     }
+}
+function findAllUsers(req, res){
+    let searchQuery = {};
+    const {status, name, limit= 20, page = 1} = req.query;
+    if (status) {
+        searchQuery = {"package.status": status};
+    }else if (name) {
+        searchQuery = { 'data.name' : { '$regex' : name, '$options' : 'i' } }
+    }
+
+    User.find(searchQuery)
+    .sort({updatedAt: 1})
+    .limit(parseInt(limit))
+    .skip(((page-1)*limit))
+    .then((result)=>{
+        res.json(result);
+        res.end();
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.end()
+    });
 }
 
 function findUser(req, res, searchQuery) {
