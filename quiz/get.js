@@ -70,7 +70,7 @@ function findRandomQuiz(req, res, searchQuery){
 
 function findAllQuizes(req, res){
     let searchQuery = {};
-    const {question, limit=20, page=1, valid} = req.query;
+    const {question, limit=20, page=1} = req.query;
 
     if (question) {
         searchQuery = { 'data.question' : { '$regex' : question, '$options' : 'i' } }
@@ -82,7 +82,7 @@ function findAllQuizes(req, res){
     .skip(((page-1)*limit))
     .then((result)=>{
         if (result == null || result.length == 0 ) {
-            res.json({"message": "Quizes not found."});
+            //res.json(result);
             res.end();
         }else{
             res.json(result);
