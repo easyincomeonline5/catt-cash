@@ -21,9 +21,12 @@ module.exports = {
         searchQuery = {"_id" : id}
         todayWithdraw(req, res, searchQuery)
     }else{
-        res.json({"message": "invalid  query"});
+        res.json({"message": "invalid query"});
         res.end();
     }
+},
+getAllWithdrawItems(req, res){
+    findAllWithdrawItems(req, res);
 }
 }
 
@@ -54,6 +57,40 @@ function findWithdraw(req, res, searchQuery){
                 }
             }
         }
+    });
+}
+
+function findAllWithdrawItems(req, res){
+    let searchQuery = {};
+    const {status, limit= 20, page = 1} = req.query;
+
+    Withdraw.find(searchQuery)
+    .sort({updatedAt: 1})
+    .limit(parseInt(limit))
+    .skip(((page-1)*limit))
+    .then((result)=>{
+        
+        if (status) {
+            let allWithdrawItems = [];
+            for (let index = 0; index < result.length; index++) {
+                const perUserwithdrawItems = result[index];
+                for (let j = 0; j < perUserwithdrawItems.data.length; j++) {
+                    const withdrawItem = perUserwithdrawItems.data[j];
+                    if (withdrawItem.status==status) {
+                        allWithdrawItems.push(withdrawItem);
+                    }
+                }
+            }
+            res.json(allWithdrawItems);
+            res.end();
+        }else{
+            res.json(result);
+            res.end();
+        }
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.end()
     });
 }
 

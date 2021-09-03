@@ -8,6 +8,10 @@ withdrawRouter.post("/add", function (req, res) {
     Add.addWithdraw(id);
 });
 
+withdrawRouter.get("/get/all",(req, res)=>{
+    Get.getAllWithdrawItems(req, res);
+})
+
 withdrawRouter.get("/get/:id",(req, res)=>{
     let id = req.params.id;
     Get.getWithdraw(id, req, res);

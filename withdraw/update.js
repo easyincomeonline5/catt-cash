@@ -12,6 +12,7 @@ module.exports = {
 
         const withdraw_item = {
             _id: "W" + Date.now(),
+            owner_id: req.body.owner_id,
             phone_number: req.body.phone_number,
             method: req.body.method,
             amount: req.body.amount,
@@ -49,6 +50,7 @@ module.exports = {
 
         const withdraw_item = {
             _id: item_id,
+            owner_id: req.body.owner_id,
             phone_number: req.body.phone_number,
             method: req.body.method,
             amount: req.body.amount,
@@ -73,6 +75,8 @@ module.exports = {
                         const element = result.data[index];
                         if (element._id==item_id) {
                             result.data[index] = withdraw_item;
+                            console.log("Owner Id: " );
+                            console.log(withdraw_item.owner_id);
 
                             //finaly update with new value
                             Withdraw.updateOne(searchQuery, {$set: result}, (err, newResult) => {

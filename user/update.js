@@ -77,7 +77,6 @@ function updateUser(id, req, res) {
                             res.end();
 
                         } else {
-                            res.json({ message: "User can not update" })
                             res.end();
                         }
                     }
