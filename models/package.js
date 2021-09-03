@@ -5,7 +5,9 @@ const dbConnections = require('../dbConnections')
 var cattCashDbConnection = dbConnections.getCattCashDbConnection();
 
 const packageData = {
-    name: {type: String, required: true},
+    current_name: {type: String, required: true},
+    update_name: {type: String, required: true},
+    valid_time: {type: Number, required: true},
     phone_number: {type: String, required: true},
     method: {type: String, required: true},
     transection: {type: String, required: true},

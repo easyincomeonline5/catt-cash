@@ -16,7 +16,9 @@ module.exports = {
                 point: uData.point
             },
             package: {
-                title: "Regular",
+                current_title: "Regular",
+                update_title: "...",
+                valid_time: Number.MAX_SAFE_INTEGER,
                 phone_number: "...",
                 method: "...",
                 transaction: "...",

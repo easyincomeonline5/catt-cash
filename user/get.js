@@ -69,7 +69,9 @@ function findUser(req, res, searchQuery) {
                     console.log("issued at not less than expired at");
                     const user = {
                         package: {
-                            title: "Regular",
+                            current_title: "Regular",
+                            update_title: "...",
+                            valid_time: Number.MAX_SAFE_INTEGER,
                             phone_number: "...",
                             method: "...",
                             transaction: "...",

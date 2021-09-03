@@ -34,9 +34,13 @@ function updateUser(id, req, res) {
                 }
 
                 if (req.body.package) {
-                    const { title, phone_number, method, transaction, amount,
+
+
+                    const { current_title, update_title, valid_time, phone_number, method, transaction, amount,
                         status, issued_at, expired_at } = req.body.package;
-                    title ? result.package.title = title : {};
+                    current_title ? result.package.current_title = current_title : {};
+                    update_title ? result.package.update_title = update_title : {};
+                    valid_time ? result.package.valid_time = valid_time : {};
                     phone_number ? result.package.phone_number = phone_number : {};
                     method ? result.package.method = method : {};
                     transaction ? result.package.transaction = transaction : {};

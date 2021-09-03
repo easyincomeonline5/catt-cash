@@ -25,7 +25,9 @@ const auth = {
 }
 
 const package = {
-    title: {type: String, required: true},
+    current_title: {type: String, required: true},
+    update_title: {type: String, required: true},
+    valid_time: {type: Number, required: true},
     phone_number: {type: String, required: true},
     method: {type: String, required: true},
     transaction: {type: String, required: true},

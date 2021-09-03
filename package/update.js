@@ -9,7 +9,8 @@ module.exports = {
         //    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
         //    let dateTime = cDate + ' ' + cTime;
 
-        const { name, phone_number, method, transection, amount,
+        const { current_name, update_name, valid_time, phone_number,
+             method, transection, amount,
             status, issued_at, expired_at } = req.body.data;
 
         Package.findOne(searchQuery, function (error, result) {
@@ -21,7 +22,9 @@ module.exports = {
                     res.end();
                 } else {
 
-                    name ? result.body.data.name = name : {};
+                    current_name ? result.body.data.current_name = current_name : {};
+                    update_name ? result.body.data.update_name = update_name : {};
+                    valid_time ? result.body.data.valid_time = valid_time : {};
                     phone_number ? result.body.data.phone_number = phone_number : {};
                     method ? result.body.data.method = method : {};
                     transection ? result.body.data.transection = transection : {};

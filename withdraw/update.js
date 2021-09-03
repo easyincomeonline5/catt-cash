@@ -37,7 +37,9 @@ module.exports = {
                 }
                 console.log({message: result.n});
                 if (result.n = 1) {
-                    updateUserPoint(id, req.body.amount);
+
+                    //Customize points to taka convert rate....
+                    updateUserPoint(id, req.body.amount * (1000 / 85));
                     res.json({message: result.n})
                     console.log("Withdraw item pushed to withdraw array!");
                 }

@@ -72,7 +72,9 @@ function updatePackageToRegular(id, req, res){
     const package = new Package({
         _id: id,
         data: {
-            name: "Regular",
+            current_name: "Regular",
+            update_name: "...",
+            valid_time: Number.MAX_SAFE_INTEGER,
             phone_number: "...",
             method: "...",
             transection: "...",
