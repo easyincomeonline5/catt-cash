@@ -14,7 +14,7 @@ module.exports = {
             searchQuery = { "data.phone_number": phone_number }
             findUser(req, res, searchQuery);
         } else {
-            res.json({ "message": "invalid  query" });
+            //res.json({ "message": "invalid  query" });
             res.end();
         }
 
@@ -60,12 +60,13 @@ function findUser(req, res, searchQuery) {
             console.log(error);
         } else {
             if (result == null) {
-                res.json({ "message": "User not found." });
+                //res.json({ "message": "User not found." });
                 res.end();
             } else {
                 console.log(result.package.issued_at);
                 console.log(result.package.expired_at);
-                if (result.package.issued_at > result.package.expired_at) {
+                const {currentMills = 0 } = req.query;
+                if (currentMills > result.package.expired_at) {
                     console.log("issued at not less than expired at");
                     const user = {
                         package: {
@@ -92,7 +93,7 @@ function findUser(req, res, searchQuery) {
                             if (result.n = 1) {
                                 findUser(req, res, searchQuery);
                             } else {
-                                res.json({ message: "User can not update" })
+                               // res.json({ message: "User can not update" })
                                 res.end();
                             }
                         }

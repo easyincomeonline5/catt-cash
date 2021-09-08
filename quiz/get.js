@@ -51,6 +51,7 @@ function getRandomInt(max) {
 function findRandomQuiz(req, res, searchQuery){
     Quiz.countDocuments({}, function(error, count){
         const ramdomInt = getRandomInt(count);
+        console.log(ramdomInt);
         Quiz.findOne().skip(ramdomInt).exec(function(err, result){
             if (err) {
                 console.log(err);
