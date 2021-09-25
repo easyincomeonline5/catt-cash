@@ -9,7 +9,7 @@ module.exports = {
 
 function findConstant(req, res, searchQuery){
 
-    Constant.findOne({}, function(error, result){
+    Constant.findOne(searchQuery, function(error, result){
         if (error) {
             console.log(error);
         }else{

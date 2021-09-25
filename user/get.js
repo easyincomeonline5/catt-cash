@@ -60,7 +60,7 @@ function findUser(req, res, searchQuery) {
             console.log(error);
         } else {
             if (result == null) {
-                //res.json({ "message": "User not found." });
+                res.json({ "message": "User not found." });
                 res.end();
             } else {
                 console.log(result.package.issued_at);
@@ -93,7 +93,7 @@ function findUser(req, res, searchQuery) {
                             if (result.n = 1) {
                                 findUser(req, res, searchQuery);
                             } else {
-                               // res.json({ message: "User can not update" })
+                                res.json({ message: "User can not update" })
                                 res.end();
                             }
                         }

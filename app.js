@@ -54,7 +54,7 @@ app.post("/uploadImageToGenerateUrl",
     function (req, res) {
         console.log(req.file);
        console.log(__dirname + "/Images/" + req.file.filename);
-       var ref = { url: "https://catt-cash.herokuapp.com/Images/" + req.file.filename }
+       var ref = { url: "https://cattcash.com/Images/" + req.file.filename }
        res.json(ref);
     }
 );
