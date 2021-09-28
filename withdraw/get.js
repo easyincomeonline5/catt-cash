@@ -64,13 +64,15 @@ function findAllWithdrawItems(req, res){
     let searchQuery = {};
     const {status, limit= 20, page = 1} = req.query;
 
-    Withdraw.find(searchQuery)
-    .sort({updatedAt: 1})
-    .limit(parseInt(limit))
-    .skip(((page-1)*limit))
-    .then((result)=>{
-        
-        if (status) {
+
+
+    if (status) {
+
+        Withdraw.find(searchQuery)
+        .sort({updatedAt: 1})
+        //.limit(parseInt(limit))
+        //.skip(((page-1)*limit))
+        .then((result)=>{
             let allWithdrawItems = [];
             for (let index = 0; index < result.length; index++) {
                 const perUserwithdrawItems = result[index];
@@ -83,15 +85,35 @@ function findAllWithdrawItems(req, res){
             }
             res.json(allWithdrawItems);
             res.end();
-        }else{
+            
+        })
+        .catch((error)=>{
+            console.log(error);
+            res.end()
+        });
+
+    }else{
+
+        Withdraw.find(searchQuery)
+        .sort({updatedAt: 1})
+        .limit(parseInt(limit))
+        .skip(((page-1)*limit))
+        .then((result)=>{
+            
             res.json(result);
-            res.end();
-        }
-    })
-    .catch((error)=>{
-        console.log(error);
-        res.end()
-    });
+        res.end();
+        })
+        .catch((error)=>{
+            console.log(error);
+            res.end()
+        });
+
+
+        
+    }
+
+
+
 }
 
 function findTodayWithdraw(req, res, searchQuery){

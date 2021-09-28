@@ -35,22 +35,48 @@ function findAllUsers(req, res){
     const {status, name, limit= 20, page = 1} = req.query;
     if (status) {
         searchQuery = {"package.status": status};
+        User.find(searchQuery)
+        .sort({updatedAt: 1})
+        //.limit(parseInt(limit))
+        //.skip(((page-1)*limit))
+        .then((result)=>{
+            res.json(result);
+            res.end();
+        })
+        .catch((error)=>{
+            console.log(error);
+            res.end()
+        });
     }else if (name) {
         searchQuery = { 'data.name' : { '$regex' : name, '$options' : 'i' } }
+        User.find(searchQuery)
+        .sort({updatedAt: 1})
+        //.limit(parseInt(limit))
+        //.skip(((page-1)*limit))
+        .then((result)=>{
+            res.json(result);
+            res.end();
+        })
+        .catch((error)=>{
+            console.log(error);
+            res.end()
+        });
+    }else{
+        User.find({})
+        .sort({updatedAt: 1})
+        .limit(parseInt(limit))
+        .skip(((page-1)*limit))
+        .then((result)=>{
+            res.json(result);
+            res.end();
+        })
+        .catch((error)=>{
+            console.log(error);
+            res.end()
+        });
     }
 
-    User.find(searchQuery)
-    .sort({updatedAt: 1})
-    .limit(parseInt(limit))
-    .skip(((page-1)*limit))
-    .then((result)=>{
-        res.json(result);
-        res.end();
-    })
-    .catch((error)=>{
-        console.log(error);
-        res.end()
-    });
+
 }
 
 function findUser(req, res, searchQuery) {
